@@ -1,0 +1,48 @@
+<div class="public-profile">
+  <div class="header-row">
+    <h1 class="page-title">Public Page</h1>
+    <button
+      *ngIf="!isOwnProfile && !requestSent && !isAlreadyFriend &&  !isAdmin"
+      class="send-request-btn"
+      (click)="sendFriendRequest()">
+      Send Friend Request
+    </button>
+    <a *ngIf="!isOwnProfile && !isAdmin"
+       [routerLink]="['/chat', userId]"
+       [queryParams]="{ name: user.firstName + ' ' + user.lastName }"
+       class="chat-btn">
+      Chat with {{ user.firstName + ' ' + user.lastName || 'User' }}
+    </a>
+    <p *ngIf="requestSent && !isOwnProfile && !isAlreadyFriend" class="request-sent-message">
+      Friend request sent!
+    </p>
+    <p *ngIf="isAlreadyFriend && !isOwnProfile" class="request-sent-message">
+      Already friends!
+    </p>
+  </div>
+  <img [src]="user.profilePicture || 'unknown.png'" alt="Profile Picture" class="avatar" />
+  <h2 *ngIf="user.firstName || user.lastName">
+    {{ user.firstName }} {{ user.lastName }}
+  </h2>
+  <h2 *ngIf="!user.firstName && !user.lastName">
+    Name not completed yet
+  </h2>
+  <p>{{ user.bio || 'Bio not completed yet' }}</p>
+  <div class="public-posts">
+    <h3>Public Posts</h3>
+    <div *ngIf="publicPosts.length === 0" class="no-posts">
+      No posts yet.
+    </div>
+    <div *ngFor="let post of publicPosts" class="post-card">
+      <div class="post-header">
+        <div>
+          <p class="post-author">Posted in album {{ post.albumTitle }} at {{ post.postedAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+      </div>
+      <img *ngIf="post.base64Image"
+           [src]="'data:image/jpeg;base64,' + post.base64Image"
+           alt="Album Image"
+           class="album-image"/>
+    </div>
+  </div>
+</div>

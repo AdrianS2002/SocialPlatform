@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <span class="brand">
+      <span class="material-icons logo">group</span>
+      Social Platform App
+    </span>
+  </div>
+  <div class="nav-center">
+    <ng-container *ngIf="authService.isUser()">
+      <a *ngIf="userId" [routerLink]="['/my-profile', userId]" routerLinkActive="active"><span class="material-icons">person</span>My profile</a>
+      <a routerLink="/friends" routerLinkActive="active"><span class="material-icons">group</span>Friends</a>
+      <a routerLink="/feed" routerLinkActive="active"><span class="material-icons">dynamic_feed</span>Feed</a>
+    </ng-container>
+    <ng-container *ngIf="authService.isAdmin()">
+      <a *ngIf="userId" [routerLink]="['/my-profile', userId]" routerLinkActive="active"><span class="material-icons">person</span>My profile</a>
+      <a routerLink="/user-management" routerLinkActive="active"><span class="material-icons">manage_accounts</span>Manage Users</a>
+      <a routerLink="/feed" routerLinkActive="active"><span class="material-icons">dynamic_feed</span>Feed</a>
+    </ng-container>
+  </div>
+  <div class="nav-right">
+    <button (click)="logout()">
+      <span class="material-icons">logout</span>
+      Logout
+    </button>
+  </div>
+</nav>

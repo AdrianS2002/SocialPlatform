@@ -1,0 +1,86 @@
+<div class="public-profile-btn-container">
+    <a *ngIf="!editMode && !authService.isAdmin()" [routerLink]="['/public-profile', user.id]"
+        class="btn public-profile-btn">
+        <span class="material-icons">visibility</span>
+        View My Public Page
+    </a>
+</div>
+<div class="profile-form-grid">
+    <form class="profile-form" (ngSubmit)="saveProfile()">
+        <div class="profile-header">
+
+            <h1>{{ user.firstName }}'s profile</h1>
+            <div class="picture-container">
+                <div class="picture-wrapper" (click)="triggerFileInput()">
+                    <img [src]="user.profilePicture || 'unknown.png'" alt="Profile Picture" />
+                    <div class="overlay" *ngIf="editMode">
+                        <span class="plus-icon">+</span>
+                    </div>
+                </div>
+                <button type="button" class="edit-icon" (click)="toggleEdit()">
+                    {{ editMode ? '⨯' : '✎' }}
+                </button>
+
+            </div>
+
+            <input #fileInput type="file" accept="image/*" *ngIf="editMode" (change)="handleImageUpload($event)" hidden
+                [readonly]="!editMode" />
+        </div>
+
+
+        <div class="name">
+            <div class="form-group">
+                <label for="name">FirstName:</label>
+                @if(editMode){
+                <input id="name" [(ngModel)]="user.firstName" name="firstName" [readonly]="!editMode" />
+                } @else {
+                <h2>{{ user.firstName }}</h2>
+                }
+
+
+            </div>
+
+            <div class="form-group">
+                <label for="name">LastName:</label>
+                @if(editMode){
+                <input id="name" [(ngModel)]="user.lastName" name="lastName" [readonly]="!editMode" />
+                } @else {
+                <h2>{{ user.lastName }}</h2>
+                }
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            @if(editMode){
+            <input id="email" type="email" [(ngModel)]="user.email" name="email" [readonly]="!editMode" />
+            } @else {
+            <h2>{{ user.email }}</h2>
+            }
+
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Bio:</label>
+            @if(editMode){
+            <textarea id="bio" [(ngModel)]="user.bio" name="bio" rows="3" [readonly]="!editMode"></textarea>
+            } @else {
+            <h2>{{ user.bio }}</h2>
+            }
+
+        </div>
+
+        <button type="submit" *ngIf="editMode" class="btn">Save</button>
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        
+        <app-albums></app-albums>
+
+    </form>
+    
+
+
+
+</div>

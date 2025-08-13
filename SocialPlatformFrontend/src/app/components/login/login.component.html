@@ -1,0 +1,25 @@
+<div class="login-wrapper">
+    <div class="container">
+      <div class="form_area">
+          <p class="title">LOGIN</p>
+          <form (ngSubmit)="login()">
+              
+              <div class="form_group">
+                  <label class="sub_title" for="email">Email</label>
+                  <input [(ngModel)]="email" name="email" placeholder="Enter your email" id="email" class="form_style" type="email">
+              </div>
+              <div class="form_group">
+                  <label class="sub_title" for="password">Password</label>
+                  <input [(ngModel)]="password" name="password" placeholder="Enter your password" id="password" class="form_style" type="password">
+              </div>
+              <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+              <p class="forgot_password" (click)="forgotPassword()">Forgot Password?</p>
+              <div>
+                  <button class="btn">LOGIN</button>
+                  <p>Don't have an Account? <a  (click)="toSignUp()" class="link">SignUp Here!</a></p><a class="link" href="">
+              </a></div><a class="link" href="">
+          
+      </a></form></div><a class="link" href="">
+  </a></div>
+  </div>
+  

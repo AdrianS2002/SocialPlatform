@@ -1,0 +1,231 @@
+:host {
+  display: block;
+  background: linear-gradient(135deg, #fff0f6, #fef9f9);
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 36px;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #e1306c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #f77737, #d62976, #4f5bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.user-card {
+  background-color: #fff;
+  border-left: 6px solid var(--color-primary);
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-initials {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-gradient-middle));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.user-info h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 20px;
+}
+
+.bio {
+  font-style: italic;
+  font-size: 16px;
+  color: #a0567d;
+  margin: 6px 0;
+}
+
+.email {
+  color: var(--color-text-light);
+  font-size: 14px;
+  margin: 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.status-badge.pending {
+  background-color: #fde3f3;
+  color: #d81b60;
+}
+
+.status-badge.approved {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+
+.actions-inline {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.validate-button,
+.delete-button {
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.validate-button {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-gradient-end));
+  color: white;
+}
+
+.validate-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-gradient-middle));
+}
+
+.delete-button {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+}
+
+.delete-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #e53935, #d32f2f);
+}
+
+.empty-list {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-text-light);
+  margin-top: 32px;
+}
+
+.material-icons {
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.material-icons.big {
+  font-size: 45px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.modal p {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 28px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.confirm-button,
+.cancel-button {
+  flex: 1;
+  padding: 14px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.confirm-button {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: #c62828;
+  transform: scale(1.03);
+}
+
+.cancel-button {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #757575;
+  transform: scale(1.03);
+}

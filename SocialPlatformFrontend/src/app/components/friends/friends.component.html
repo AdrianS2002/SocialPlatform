@@ -1,0 +1,26 @@
+<div class="friends-tabs-container">
+  <div class="tabs-header-links">
+    <a (click)="selectedTab = 'requests'" [class.active]="selectedTab === 'requests'">Friend Requests</a>
+    <a (click)="selectedTab = 'friends'" [class.active]="selectedTab === 'friends'">My Friends</a>
+  </div>
+
+  <div class="tab-section" *ngIf="selectedTab === 'requests'">
+    <div *ngIf="friendRequests.length === 0" class="no-data">No friend requests.</div>
+    <div class="friend-card" *ngFor="let request of friendRequests">
+      <img [src]="'unknown.png'" class="friend-avatar" />
+      <span class="friend-name">{{ request.firstName }} {{ request.lastName}}</span>
+      <div class="action-buttons">
+        <button class="accept-btn" (click)="acceptRequest(request)">Accept</button>
+        <button class="delete-btn" (click)="deleteRequest(request)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="tab-section" *ngIf="selectedTab === 'friends'">
+    <div *ngIf="friends.length === 0" class="no-data">You have no friends yet.</div>
+    <div class="friend-card" *ngFor="let friend of friends">
+      <img [src]="'unknown.png'" class="friend-avatar" />
+      <span class="friend-name">{{ friend.name }}</span>
+      <a [routerLink]="['/public-profile', friend.id]" class="view-profile-btn">View Profile</a>
+    </div>
+  </div>
+</div>

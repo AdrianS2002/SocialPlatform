@@ -1,0 +1,142 @@
+.friends-tabs-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background: linear-gradient(to bottom right, #fde3ec, #fce4ec);
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tabs-header-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.tabs-header-links a {
+  font-size: 20px;
+  font-weight: 800;
+  color: #7b1fa2;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.tabs-header-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #e94057, #8a2387);
+  border-radius: 2px;
+}
+
+.tabs-header-links a:hover {
+  color: #9c27b0;
+}
+
+.tab-section {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.friend-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #f6eaf0, #fce4ec);
+  border: 1px solid #dbdbdb;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.friend-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--color-primary, #e1306c);
+  object-fit: cover;
+}
+
+.friend-name {
+  flex: 1;
+  margin-left: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-primary-dark, #833ab4);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.accept-btn {
+  background: linear-gradient(135deg, #28c76f, #20ba64);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(40, 199, 111, 0.2);
+}
+
+.accept-btn:hover {
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ed4956, #e53935);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(237, 73, 86, 0.2);
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+}
+
+.view-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #e94057, #8a2387);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  border: none;
+  box-shadow: none;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.view-profile-btn:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.no-data {
+  text-align: center;
+  color: var(--color-text-light, #8e8e8e);
+  font-size: 16px;
+  padding: 16px;
+}

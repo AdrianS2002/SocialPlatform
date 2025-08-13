@@ -1,0 +1,91 @@
+.chat-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 24px;
+  background: linear-gradient(135deg, #fff0f6, #fce4ec);
+  border: 2px solid var(--color-primary-dark);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  color: var(--color-text);
+}
+
+.chat-container h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.chat-box {
+  height: 550px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  padding: 18px;
+  background: var(--color-surface);
+  /*border-radius: 10px;*/
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-behavior: smooth;
+}
+
+.message-sent {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-gradient-middle));
+  color: white;
+  padding: 10px 14px;
+  border-radius: 20px 20px 0 20px;
+  max-width: 70%;
+  font-size: 18px;
+  box-shadow: var(--shadow);
+}
+
+.message-received {
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--color-accent-light), #ffe4ec);
+  color: var(--color-text);
+  padding: 10px 14px;
+  border-radius: 20px 20px 20px 0;
+  max-width: 70%;
+  font-size: 18px;
+  box-shadow: var(--shadow);
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 30px;
+  font-size: 15px;
+  outline: none;
+  background: #fff0f6;
+  transition: border 0.2s ease;
+}
+
+.chat-input input:focus {
+  border-color: var(--color-primary);
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-input button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}

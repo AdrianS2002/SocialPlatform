@@ -1,0 +1,98 @@
+<div class="albums-section">
+    <h2>My Albums</h2>
+
+
+    <div *ngIf="successMessageAlbum" class="success-message">{{ successMessageAlbum }}</div>
+    <div *ngIf="errorMessageAlbum" class="error-message">{{ errorMessageAlbum }}</div>
+
+    <div class="modal-backdrop" *ngIf="showAddAlbumModal">
+        <div class="modal">
+            <h2>Create New Album</h2>
+            <input [(ngModel)]="newAlbumTitle" placeholder="Album Title" />
+            <input [(ngModel)]="newAlbumDescription" placeholder="Album Description" />
+            <div class="modal-buttons">
+                <button (click)="createAlbum()">
+                    {{ editingAlbumId !== null ? 'Update' : 'Create' }}
+                </button>
+                <button class="cancel-button" (click)="closeAddAlbumModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="albums-grid">
+        <div *ngFor="let album of albums" class="album-card">
+            <div class="dots-menu" (click)="openEditAlbumModal(album)">⋮</div>
+            <div class="album-header">
+                <h3>{{ album.title }}</h3>
+                <p>{{ album.description }}</p>
+            </div>
+
+            @if(album.id != null){
+            <div class="album-preview-grid" *ngIf="albumPreviews[album.id]">
+                <img *ngFor="let photo of albumPreviews[album.id]"
+                    [src]="'data:image/jpeg;base64,' + photo.base64Content" alt="preview" />
+            </div>
+            <div class="usage">
+                <button (click)="openAlbum(album.id)"><img src="camera.png"></button>
+                <button (click)="askToDeleteAlbum(album.id)"><img src="bin.png" class="bin"></button>
+
+            </div>
+
+            }
+        </div>
+        <div class="modal-backdrop" *ngIf="showPhotoModal">
+            <div class="modal-large">
+                <div class="title">
+                    <h2>{{ selectedAlbumTitle }}</h2>
+                </div>
+
+                <div *ngIf="selectedPhotos.length === 0" class="no-photos-message">
+                    No photos yet.
+                </div>
+
+                <div class="photos-grid" *ngIf="selectedPhotos.length > 0">
+                    <div class="photo-wrapper" *ngFor="let photo of selectedPhotos">
+                        <img [src]="'data:image/jpeg;base64,' + photo.base64Content" [alt]="photo.filename"
+                            class="pozeAlbum" />
+                        <span class="delete-btn" (click)="askToDeletePhoto(photo.id)">X</span>
+                    </div>
+                </div>
+
+
+                <div class="photo-modal-buttons">
+                    <button (click)="closePhotoModal()">Close</button>
+                    <button (click)="triggerFileInput()">Add Picture</button>
+                    <input type="file" #fileInput accept="image/*" (change)="handleImageUpload($event)" hidden />
+
+                </div>
+            </div>
+        </div>
+
+        <div class="add-album-card" (click)="openAddAlbumModal()">
+            <span class="plus-overlay">+</span>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" *ngIf="showConfirmModal">
+        <div class="modal">
+            <h3>Are you sure you want to delete this photo?</h3>
+            <div class="modal-buttons">
+                <button (click)="confirmDelete()">Yes, delete</button>
+                <button class="cancel-button" (click)="cancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-backdrop" *ngIf="showConfirmAlbumModal">
+        <div class="modal">
+            <h3>Are you sure you want to delete this album?</h3>
+            <div class="modal-buttons">
+                <button (click)="confirmDeleteAlbum()">Yes, delete</button>
+                <button class="cancel-button" (click)="cancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,59 @@
+<div class="feed-page">
+  <h1 class="feed-title">Your Feed</h1>
+  <div *ngIf="posts.length === 0" class="no-posts">
+    No posts yet.
+  </div>
+  <div *ngFor="let post of posts" class="post-card">
+    <div class="post-header">
+      <img [src]="post.profilePicture || 'unknown.png'" class="post-avatar" alt="User Picture" />
+      <div class="post-text">
+        <p class="post-author">{{ post.fullName }} posted in {{ post.albumTitle }}</p>
+        <p class="post-date">{{ post.postedAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+      </div>
+      <div class="post-actions">
+        <a [routerLink]="['/public-profile', post.postedById]" class="view-profile-btn">
+          View Profile
+        </a>
+        <button *ngIf="isAdmin" class="block-btn" (click)="blockPost(post.imageId)">
+          Block Post
+        </button>
+        <button *ngIf="isAdmin" class="block-btn" (click)="deletePost(post.imageId)">
+          Delete Post
+        </button>
+      </div>
+    </div>
+    <p class="post-description">{{ post.albumDescription }}</p>
+    <img *ngIf="post.base64Image"
+         [src]="'data:image/jpeg;base64,' + post.base64Image"
+         alt="Album Image"
+         class="album-image" />
+  </div>
+  <div class="chat-widget" [ngClass]="{ 'chat-open': isChatOpen }">
+    <button class="chat-toggle-btn" (click)="toggleChat()">
+      <span *ngIf="!isChatOpen" class="chat-icon">💬</span>
+      <span *ngIf="isChatOpen" class="close-icon">×</span>
+    </button>
+    <div class="chat-panel" *ngIf="isChatOpen">
+      <div class="chat-header">
+        <h3>AI Assistant</h3>
+      </div>
+      <div *ngIf="isAuthorized; else noAccess" class="chatbot-container">
+        <div class="messages-container">
+          <div *ngFor="let msg of messages" class="chat-message"
+            [ngClass]="{ 'user-message': msg.sender === 'You', 'ai-message': msg.sender === 'AI' }">
+            <p><strong>{{ msg.sender }}:</strong> {{ msg.text }}</p>
+          </div>
+        </div>
+        <div class="chat-input-container">
+          <input [(ngModel)]="userMessage" type="text" placeholder="Type a message..." (keyup.enter)="sendMessage()" />
+          <button (click)="sendMessage()">Send</button>
+        </div>
+      </div>
+      <ng-template #noAccess>
+        <p class="unauthorized-message">
+          You are not authorized to use this feature.
+        </p>
+      </ng-template>
+    </div>
+  </div>
+</div>

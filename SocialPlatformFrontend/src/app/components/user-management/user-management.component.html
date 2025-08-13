@@ -1,0 +1,53 @@
+<div class="page-container">
+  <h1 class="page-title">
+    <span class="material-icons big">admin_panel_settings</span>
+    User Validation Panel
+  </h1>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  <div *ngIf="pendingUsers.length === 0 && !errorMessage" class="empty-list">
+    <p>
+      <span class="material-icons">check_circle</span>
+      All user accounts have been validated!
+    </p>
+  </div>
+  <div *ngFor="let user of pendingUsers" class="user-card">
+    <div class="avatar-initials">
+      {{ getInitials(user)}}
+    </div>
+    <div class="user-info">
+      <h3>{{ getFullName(user) }}</h3>
+      <p class="bio">{{ user.bio || 'Bio not completed yet' }}</p>
+      <p class="email">{{ user.email || 'No email' }}</p>
+      <span class="status-badge" [ngClass]="{
+        'pending': !user.isValidated,
+        'approved': user.isValidated
+      }">
+        {{ user.bio === 'Blocked' ? 'Blocked' : (!user.isValidated ? 'Awaiting Validation' : 'Approved') }}
+      </span>
+
+    </div>
+    <div class="actions-inline">
+      <button *ngIf="user.bio !== 'Blocked' && !user.isValidated" class="validate-button"
+        (click)="validateUser(user.id)">
+        <span class="material-icons">check</span>
+        Validate
+      </button>
+      <button *ngIf="user.bio !== 'Blocked'" class="delete-button" (click)="openDeleteModal(user.id)">
+        <span class="material-icons">delete</span>
+        Delete
+      </button>
+    </div>
+  </div>
+  <div class="modal-backdrop" *ngIf="userIdToDelete">
+    <div class="modal">
+      <h2>Confirm Deletion</h2>
+      <p>Are you sure you want to delete this user?</p>
+      <div class="modal-buttons">
+        <button class="confirm-button" (click)="deleteUser()">Yes, Delete</button>
+        <button class="cancel-button" (click)="cancelDelete()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
